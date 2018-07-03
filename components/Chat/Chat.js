@@ -31,7 +31,7 @@ Component({
         speakerUrlPrefix:'./img/speak',
         speakerUrlSuffix:'.png',
         isSpeaking: false ,
-        isChat: true,
+        isChat: true,  
         chatHeight: 0,
         scrollTop: 0,
         isPlay: false,
@@ -40,7 +40,6 @@ Component({
         touchStart: 0,
         touchMove: 0,
         touchEnd: 0,
-        chatContentOther: '',
         isCancel: false,
         emojiUnicode: []
     },
@@ -53,7 +52,7 @@ Component({
         //传入用户的uid
         uid: {
             type: Number,
-            value: 45688
+            value: 456881
         },
         //传入聊天房间的id
         chatroomid: {
@@ -68,13 +67,13 @@ Component({
 
     ready() {
         let _this = this;
+        //样式兼容
         wx.getSystemInfo({
             success(res){
                 if(res.screenHeight === 640) {
                     _this.setData({
                         isAnd: true
                     })
-                    console.log(_this.data.isAnd)
                 } else {
                     _this.setData({
                         isAnd: false
@@ -82,6 +81,7 @@ Component({
                 }
             }
         })
+        //缓存本页面
         app.pages.add(this); 
         //获取之前的聊天信息
         this.getPreMessage()
@@ -111,6 +111,7 @@ Component({
 
     },
     methods: {
+        //通知
         notify: function(name, data) {
             console.log("new msg evnet");
             // 收到notify后，按照seq增量拉新消息
@@ -176,7 +177,6 @@ Component({
             emojiUnicode.push(`[${e.currentTarget.dataset.oxf}]`)
             this.setData({
                 chatContent: this.data.chatContent + `${e.currentTarget.dataset.emoji}`,
-                chatContentOther: this.data.chatContentOther + `[${e.currentTarget.dataset.oxf}]`,
                 emojiUnicode: emojiUnicode
             })
         },
@@ -190,8 +190,7 @@ Component({
         //input输入事件
         bindinput(e){
             this.setData({
-                chatContent: e.detail.value,
-                chatContentOther: e.detail.value
+                chatContent: e.detail.value
             })
         },
         //显示聊天框或者语音框
@@ -234,6 +233,7 @@ Component({
             recorderManager.start(options);
             this.recorderManager = recorderManager;
         },
+        //滑动事件
         touchmove(e) {
             this.setData({
                 touchMove: e.changedTouches[0].pageY
@@ -275,11 +275,13 @@ Component({
                 wx.sendSocketMessage({
                     data: '',
                     success:(res) => {
+                        //停止录音后的事件
                         this.recorderManager.onStop((res) => {
                             const { tempFilePath } = res;
                             this.setData({
                                 src: tempFilePath
                             })
+                            //上传录音
                             uploadFile(this.data.uid, tempFilePath, (key) => {
                                 wx.request({
                                     method: "POST",
@@ -331,10 +333,10 @@ Component({
         },
         //提交聊天记录
         submitChat(){
-            if(this.data.chatContent === '' || this.data.chatContentOther === '') {
+            if(this.data.chatContent === '') {
                 return
             }
-            let param = this.data.chatContentOther;
+            let param = this.data.chatContent;
             let  regRule = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/;
             if(param.match(regRule)) {
                 for(let i = 0; i < this.data.emojiUnicode.length; i++) {
@@ -357,7 +359,6 @@ Component({
                             this.setData({
                                 chatContent: '',
                                 emojiUnicode: [],
-                                chatContentOther: '',
                                 chatLists: until.changeEmoji(this.data.chatLists),
                                 isFocus: true
                             })
