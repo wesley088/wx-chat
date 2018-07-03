@@ -1,0 +1,72 @@
+<view class="chat" style="height: {{height}}px">
+    <scroll-view scroll-y='true' scroll-top="{{scrollTop}}" class="chat-content" style="height: {{chatHeight}}px">
+        <view class="chat-content-list {{uid === item.from_uid ? 'right' : ''}}" wx:for="{{chatLists}}" wx:key="{{index}}">
+            <image class="chat-content-list-avatar" src="{{item.head_img}}"></image>
+            <view class="chat-content-list-content">
+                <view class="chat-content-list-name">{{item.nickname}}</view>
+                <view class="chat-content-list-msg " hidden="{{!(item.msg_type === 'text')}}">
+                    <view class="chat-content-list-msg-white {{isAnd ? 'active' : ''}}"></view>
+                    <view  class="chat-content-list-msg-gray {{isAnd ? 'active' : ''}}"></view>
+                    <text selectable='true'>{{item.content}}</text>
+                </view>
+                    
+                
+                <view class="chat-content-list-voice" hidden="{{!(item.msg_type === 'voice')}}" catchtap="playVoice" data-content="{{item.content}}">
+                    <view class="chat-content-list-msg-white {{isAnd ? 'active' : ''}}"></view>
+                    <view  class="chat-content-list-msg-gray {{isAnd ? 'active' : ''}}"></view>
+                    语音
+                </view>
+            </view>
+        </view>
+        <!-- <view class="chat-content-list">
+            <image class="chat-content-list-avatar" src="./img/user1.jpg"></image>
+            <view class="chat-content-list-content">
+                <view class="chat-content-list-name">Vine</view>
+                <view class="chat-content-list-msg">
+                    <view class="chat-content-list-msg-white"></view>
+                    <view  class="chat-content-list-msg-gray"></view>
+                    我是是的撒的</view>
+            </view>
+        </view>
+        <view class="chat-content-list right">
+            <image class="chat-content-list-avatar" src="./img/user1.jpg"></image>
+            <view class="chat-content-list-content">
+                <view class="chat-content-list-name">Vine</view>
+                <view class="chat-content-list-msg">
+                    <view class="chat-content-list-msg-white"></view>
+                    <view  class="chat-content-list-msg-gray"></view>
+                    我是是的撒的</view>
+                <view class="chat-content-list-voice" catchtap="palyVoice">
+                    <view class="chat-content-list-msg-white"></view>
+                    <view  class="chat-content-list-msg-gray"></view>
+                </view>
+            </view>
+        </view> -->
+    </scroll-view>
+    <view class="chat-set">
+        <view class="chat-set-write">
+            <image class="chat-set-icon" catchtap="toggleChat" src="{{isChat ? './img/voice.png' : './img/keyboard.png' }}"></image>
+            <input class="chat-set-input" hidden="{{!isChat}}" confirm-type="send" cursor-spacing="{{15}}" bindfocus="focus" focus="{{isFocus}}" bindinput="bindinput" bindconfirm="submitChat" value="{{chatContent}}"/>
+            <view class="chat-set-voice" hidden="{{isChat}}" bindtouchstart="touchdown" bindtouchmove="touchmove" bindtouchend="touchup">按住 说话</view>
+            <image catchtap="showEmoji" class="chat-set-icon chat-set-icon-right" src="./img/emoji.png"></image>
+            <image class="chat-set-icon chat-set-icon-right" src="./img/more.png"></image>
+        </view>
+        
+        <view class="chat-emoji" hidden="{{!isShow}}">
+            <scroll-view scroll-y="true" style="height:200px;background: #fff;">
+              <block wx:for="{{emojis}}" wx:for-item="e" wx:key="index">
+                <view class="chat-emoji-list">
+                  <image class="chat-emoji-icon" catchtap="emojiChoose" src="http://soupu.oss-cn-shanghai.aliyuncs.com/emoji/{{e.emoji}}.png" data-emoji="{{e.char}}" data-oxf="{{e.emoji}}"></image>
+                </view>
+              </block>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="chat-speaking" hidden="{{!isSpeaking}}">
+        <image class="speaker" src="{{speakerUrl}}"></image>
+    </view>
+    <view class="chat-speaking" hidden="{{!isCancel}}">
+        <image class="speaker" src="./../Chat/img/cancel.png"></image>
+    </view>
+    
+</view>

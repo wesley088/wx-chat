@@ -1,0 +1,12 @@
+{
+	"appid": "wx17af7e71ec7e9dd7",
+	"projectname": "%E7%82%B9%E7%82%B9%E6%BB%B4%E6%BB%B4",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"condition": {}
+}

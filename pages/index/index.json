@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "Chat": "/components/Chat/Chat"
+    },
+    "disableScroll": true
+}

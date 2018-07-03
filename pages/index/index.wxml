@@ -1,0 +1,4 @@
+<!-- <view class="container">
+  <button bindtap="recordAndUpload">录音5秒&上传</button>
+</view> -->
+<Chat id="chat" ></Chat>

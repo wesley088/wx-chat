@@ -1,0 +1,35 @@
+/* components/toast/toast.wxss */
+view{
+    box-sizing: border-box;
+}
+.toast{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.toast-main{
+    padding: 50rpx 20rpx;
+    background: rgba(0, 0, 0, .7);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10rpx;
+    text-align: center;
+    max-width: 540rpx;
+    min-width: 314rpx;
+    line-height:40rpx;
+    white-space: nowrap;
+}
+.toast-title{
+    font-size: 28rpx;
+    color: #fffffe;
+    margin-bottom: 48rpx;
+}
+.toast-content{
+    font-size: 24rpx;
+    color: #fffffe;
+    line-height: 48rpx;
+}
