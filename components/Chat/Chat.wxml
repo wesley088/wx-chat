@@ -18,30 +18,6 @@
                 </view>
             </view>
         </view>
-        <!-- <view class="chat-content-list">
-            <image class="chat-content-list-avatar" src="./img/user1.jpg"></image>
-            <view class="chat-content-list-content">
-                <view class="chat-content-list-name">Vine</view>
-                <view class="chat-content-list-msg">
-                    <view class="chat-content-list-msg-white"></view>
-                    <view  class="chat-content-list-msg-gray"></view>
-                    我是是的撒的</view>
-            </view>
-        </view>
-        <view class="chat-content-list right">
-            <image class="chat-content-list-avatar" src="./img/user1.jpg"></image>
-            <view class="chat-content-list-content">
-                <view class="chat-content-list-name">Vine</view>
-                <view class="chat-content-list-msg">
-                    <view class="chat-content-list-msg-white"></view>
-                    <view  class="chat-content-list-msg-gray"></view>
-                    我是是的撒的</view>
-                <view class="chat-content-list-voice" catchtap="palyVoice">
-                    <view class="chat-content-list-msg-white"></view>
-                    <view  class="chat-content-list-msg-gray"></view>
-                </view>
-            </view>
-        </view> -->
     </scroll-view>
     <view class="chat-set">
         <view class="chat-set-write">

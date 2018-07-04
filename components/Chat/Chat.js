@@ -34,12 +34,10 @@ Component({
         isChat: true,  
         chatHeight: 0,
         scrollTop: 0,
-        isPlay: false,
         src: '',
         isAnd: false,
         touchStart: 0,
         touchMove: 0,
-        touchEnd: 0,
         isCancel: false,
         emojiUnicode: []
     },
@@ -58,10 +56,6 @@ Component({
         chatroomid: {
             type: Number,
             value: 100
-        },
-        chatLists: {
-            type: Array,
-            value: []
         }
     },
 
